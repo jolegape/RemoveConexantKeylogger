@@ -15,13 +15,22 @@
 #>
 
 if (Test-path "$($env:SystemRoot)\System32\Mictray64.exe"){
+    Write-Output 'Found MicTray64.exe'
     Stop-Process -Name MicTray64 -Force
     Remove-Item -Path "$($env:SystemRoot)\System32\Mictray64.exe" -Force
 } elseif (Test-Path "$($env:SystemRoot)\System32\Mictray.exe"){ 
+    Write-Output 'Found MicTray.exe'
     Stop-Process -Name MicTray -Force
     Remove-Item -Path "$($env:SystemRoot)\System32\Mictray.exe" -Force
 }
 
 if (Test-path "$($env:SystemDrive)\Users\Public\MicTray.log"){
+    Write-Output 'Found MicTray.log'
     Remove-Item -Path "$($env:SystemDrive)\Users\Public\MicTray.log" -Force
 }
+
+if ($t = (Get-ScheduledTask | Where-Object TaskName -match 'MicTray')) {
+    Write-Output 'Found scheduled task'
+    $t | Unregister-ScheduledTask -Confirm:$false
+}
+Read-Host 'Press enter to continue...'
