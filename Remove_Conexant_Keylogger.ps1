@@ -8,7 +8,9 @@
     This script stops the running process and removes the offending files. Needs to be run as admin.
 .NOTES
     FileName:       Remove_Conexant_Keylogger.ps1
-    Author:         Gavin Willett
+    Created By:     Gavin Willett (http://github.com/jolegape)
+    Edited by:      Brandon Andrews (http://github.com/DWSR)
+                    Fredy Teyssedou (http://github.com/tastydew)
 .LINK
     Script hosted at:
     http://github.com/jolegape
