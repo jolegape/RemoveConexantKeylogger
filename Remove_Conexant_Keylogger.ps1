@@ -14,6 +14,12 @@
     http://github.com/jolegape
 #>
 
+If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    $arguments = "-NoProfile -ExecutionPolicy Bypass & '" + $myinvocation.mycommand.definition + "'"
+    Start-Process powershell -Verb runAs -ArgumentList $arguments
+    Break
+}
+
 if (Test-path "$($env:SystemRoot)\System32\Mictray64.exe"){
     Write-Output 'Found MicTray64.exe'
     Stop-Process -Name MicTray64 -Force
