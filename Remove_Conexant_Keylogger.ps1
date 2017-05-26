@@ -1,4 +1,5 @@
-﻿<#
+
+<#
 .SYNOPSIS
     Removes Conexant MicTray and associated log file
 .DESCRIPTION
@@ -25,10 +26,12 @@ If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 if (Test-path "$($env:SystemRoot)\System32\Mictray64.exe"){
     Write-Output 'Found MicTray64.exe'
     Stop-Process -Name MicTray64 -Force
+    Start-Sleep -Seconds 2
     Remove-Item -Path "$($env:SystemRoot)\System32\Mictray64.exe" -Force
 } elseif (Test-Path "$($env:SystemRoot)\System32\Mictray.exe"){ 
     Write-Output 'Found MicTray.exe'
     Stop-Process -Name MicTray -Force
+    Start-SLeep -Seconds 2
     Remove-Item -Path "$($env:SystemRoot)\System32\Mictray.exe" -Force
 }
 if (Test-path "$($env:SystemRoot)\System32\Mictray64.xml"){
